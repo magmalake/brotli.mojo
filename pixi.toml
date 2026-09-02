@@ -1,0 +1,72 @@
+[workspace]
+authors = ["Marius S <39998+winding-lines@users.noreply.github.com>"]
+name = "brotli.mojo"
+version = "0.1.0"
+description = "A Mojo Brotli binding (RFC 7932 compress/decompress) via FFI to libbrotlienc/libbrotlidec. Brotli is the last Parquet page codec magmalake could not read."
+preview = ["pixi-build"]
+channels = [
+    "https://conda.modular.com/max-nightly",
+    "conda-forge",
+]
+platforms = ["osx-arm64", "linux-64", "linux-aarch64"]
+
+[dependencies]
+libbrotlidec = ">=1.1,<2"
+libbrotlienc = ">=1.1,<2"
+libbrotlicommon = ">=1.1,<2"
+# The FFI shim is a pixi package (shim/); pixi builds it and installs
+# lib/libbrotlimojo.{dylib,so} into the env — no manual build step.
+brotli-shim = { path = "shim" }
+
+[tasks]
+# Round-trip gate: compress -> decompress -> original at several sizes and
+# qualities, known-vector checks against the reference encoder, and the
+# corrupt/truncated/too-small error paths. The shim is dlopened at runtime
+# from $CONDA_PREFIX/lib, installed by the brotli-shim package.
+test = { cmd = "mkdir -p build && mojo build test/brotli_test.mojo -I src -o build/brotli-test && ./build/brotli-test" }
+
+[feature.nightly.dependencies]
+modular = ">=26.6.0.dev2026082605,<27"
+
+[feature.stable.dependencies]
+mojo-compiler = "==1.0.0"
+
+# Benchmarks run through the shared harness (magmalake/bench.mojo) and get
+# their own feature, so the tin stays out of the environments that run tests.
+# -I $CONDA_PREFIX/lib/mojo is what puts its precompiled package on the import
+# path. Stable only: a precompiled Mojo package is stamped with the compiler
+# version that built it and refused by any other, and tins build with 1.0.0.
+[feature.bench.dependencies]
+bench-mojo = { git = "https://github.com/magmalake/bench.mojo", rev = "971759f58b862cfaa8fdef8708cd42f52ac719f9" }
+
+[feature.bench.tasks]
+bench = "mojo run -I src -I $CONDA_PREFIX/lib/mojo bench/bench_brotli.mojo"
+
+[environments]
+default = ["nightly"]
+stable = ["stable"]
+bench = ["stable", "bench"]
+
+# ── pixi-build: consumable as a pixi source dependency ──────────────────────
+# Conda package name is brotli-mojo (conda-forge owns "brotli"); the Mojo
+# import stays `from brotli import …`.
+[package]
+name = "brotli-mojo"
+version = "0.1.0"
+
+[package.build]
+backend = { name = "pixi-build-mojo", version = "0.*" }
+
+[package.build.config.pkg]
+path = "src/brotli"
+name = "brotli"
+
+[package.host-dependencies]
+mojo-compiler = "==1.0.0"
+
+[package.build-dependencies]
+mojo-compiler = "==1.0.0"
+
+[package.run-dependencies]
+mojo-compiler = ">=1.0.0,<2"
+brotli-shim = { path = "shim" }

@@ -1,0 +1,6 @@
+name = "brotli-mojo"
+version = "0.1.0"
+description = "A Mojo Brotli binding (RFC 7932 compress/decompress) via FFI to libbrotli"
+tags = ["brotli", "compression", "parquet", "rfc7932", "ffi", "magmalake"]
+# other tins this one depends on; omit if none
+tins = []

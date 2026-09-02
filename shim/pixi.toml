@@ -1,0 +1,12 @@
+[package]
+name = "brotli-shim"
+version = "0.1.0"
+description = "C FFI shim for brotli-mojo: libbrotlimojo.{dylib,so}, dlopened at runtime"
+
+[package.build]
+backend = { name = "pixi-build-cmake", version = "*" }
+
+[package.host-dependencies]
+libbrotlidec = ">=1.1,<2"
+libbrotlienc = ">=1.1,<2"
+libbrotlicommon = ">=1.1,<2"
