@@ -40,7 +40,8 @@ what pyarrow and parquet-mr link too — reads those files today and matches
 ## Prerequisites
 
 - [pixi](https://pixi.sh) — manages the Mojo toolchain and the conda-forge
-  `libbrotlidec` / `libbrotlienc` / `libbrotlicommon` dependencies.
+  `libbrotlidec` / `libbrotlienc` / `libbrotlicommon` dependencies (plus
+  `brotli`, which is where conda-forge keeps the headers).
 - macOS (`osx-arm64`) or Linux (`linux-64`, `linux-aarch64`).
 
 Everything else — the Mojo compiler, libbrotli, and the CMake shim build — is
@@ -178,7 +179,9 @@ measures libbrotli plus the per-call cost of crossing the FFI boundary, and at
 `shim/` is a [pixi-build-cmake](https://pixi.sh) package: `CMakeLists.txt` links
 `shim/brotli_wrapper.c` against conda-forge's `libbrotlidec` / `libbrotlienc` /
 `libbrotlicommon`, producing `libbrotlimojo.{dylib,so}` (natural extension per
-platform), installed to `$CONDA_PREFIX/lib` by `pixi install`.
+platform), installed to `$CONDA_PREFIX/lib` by `pixi install`. Those three
+packages ship only shared objects; `include/brotli/*.h` comes from the separate
+`brotli` package, which is a host-dependency of the shim for that reason alone.
 
 **Why a C shim, not calling libbrotli directly?** Same reasoning as zstd.mojo
 and lz4.mojo: a single-call API means Mojo never reads back internal library

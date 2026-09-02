@@ -6,7 +6,15 @@ description = "C FFI shim for brotli-mojo: libbrotlimojo.{dylib,so}, dlopened at
 [package.build]
 backend = { name = "pixi-build-cmake", version = "*" }
 
+# conda-forge splits Brotli five ways, and the headers are not where you would
+# guess: `libbrotlidec` / `libbrotlienc` / `libbrotlicommon` ship only the
+# shared objects and pkg-config files, while `include/brotli/*.h` lives in the
+# `brotli` package. Without `brotli` here the CMake configure finds no headers
+# in the prefix — and on a developer machine with Homebrew installed it
+# silently picks up /opt/homebrew/include instead, which builds locally and
+# fails on Linux CI.
 [package.host-dependencies]
+brotli = ">=1.1,<2"
 libbrotlidec = ">=1.1,<2"
 libbrotlienc = ">=1.1,<2"
 libbrotlicommon = ">=1.1,<2"
