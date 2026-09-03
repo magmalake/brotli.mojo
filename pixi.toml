@@ -17,6 +17,10 @@ libbrotlicommon = ">=1.1,<2"
 # The FFI shim is a pixi package (shim/); pixi builds it and installs
 # lib/libbrotlimojo.{dylib,so} into the env — no manual build step.
 brotli-shim = { path = "shim" }
+# Added by `pixi shelf add lint-mojo`: the linter comes from GitHub as a pixi
+# source dependency pinned at the revision mojoshelf published, and builds
+# the `mojolint` executable into every environment next to mojo-lsp-server.
+lint-mojo = { git = "https://github.com/magmalake/lint.mojo.git", rev = "2a12807b7847984aff2c8bf148b0eb7515a99844" }
 
 [tasks]
 # Round-trip gate: compress -> decompress -> original at several sizes and
@@ -24,6 +28,9 @@ brotli-shim = { path = "shim" }
 # corrupt/truncated/too-small error paths. The shim is dlopened at runtime
 # from $CONDA_PREFIX/lib, installed by the brotli-shim package.
 test = { cmd = "mkdir -p build && mojo build test/brotli_test.mojo -I src -o build/brotli-test && ./build/brotli-test" }
+# mojolint (lint-mojo, below): the origin and threading mistakes the compiler
+# lets through, with mojo-lsp-server behind the rules. Exit 1 on findings.
+lint = { cmd = "mojolint --lsp -I src src test" }
 
 [feature.nightly.dependencies]
 modular = ">=26.6.0.dev2026082605,<27"
