@@ -19,9 +19,73 @@
       "performance_cores": 2,
       "memory_bytes": 16766414848,
       "accelerator": false
+    },
+    "linux-x86_64-amd-epyc-9v74-80-core-processor-2c": {
+      "cpu": "AMD EPYC 9V74 80-Core Processor",
+      "os": "linux",
+      "arch": "x86_64",
+      "physical_cores": 2,
+      "logical_cores": 4,
+      "performance_cores": 2,
+      "memory_bytes": 16766410752,
+      "accelerator": false
     }
   },
   "runs": [
+    {
+      "commit": "e1456f6f052cd26095fbbc1e0c5768c11711e84b",
+      "short_commit": "e1456f6",
+      "timestamp": "2026-09-03T23:57:38Z",
+      "ref": "main",
+      "host": "linux-x86_64-amd-epyc-9v74-80-core-processor-2c",
+      "config": {
+        "min_runtime_secs": 1.0,
+        "num_warmup_iters": 2,
+        "num_repetitions": 5,
+        "max_iters": 100000000
+      },
+      "results": {
+        "bench_compress_q1": {
+          "mean_ns": 2223456.4393822392,
+          "min_ns": 2183457.907335907,
+          "max_ns": 2255770.689189189,
+          "median_ns": 2231440.638996139,
+          "stddev_ns": 27105.924094879276,
+          "iters": 518,
+          "reps": 5,
+          "throughput": 7.545556415155742,
+          "throughput_unit": "GB/s",
+          "throughput_metric": "bytes",
+          "throughput_count": 16777216
+        },
+        "bench_compress_q5": {
+          "mean_ns": 15252082.535999998,
+          "min_ns": 15038131.013333334,
+          "max_ns": 15373300.36,
+          "median_ns": 15257520.426666666,
+          "stddev_ns": 130240.00001885465,
+          "iters": 75,
+          "reps": 5,
+          "throughput": 1.0999950964335643,
+          "throughput_unit": "GB/s",
+          "throughput_metric": "bytes",
+          "throughput_count": 16777216
+        },
+        "bench_decompress": {
+          "mean_ns": 14193529.64,
+          "min_ns": 14135670.675,
+          "max_ns": 14255560.975,
+          "median_ns": 14180406.4125,
+          "stddev_ns": 56556.32060299436,
+          "iters": 80,
+          "reps": 5,
+          "throughput": 1.1820326885229937,
+          "throughput_unit": "GB/s",
+          "throughput_metric": "bytes",
+          "throughput_count": 16777216
+        }
+      }
+    },
     {
       "commit": "32482cdab5d108eeae092e3560c65eff1b354ab5",
       "short_commit": "32482cd",
