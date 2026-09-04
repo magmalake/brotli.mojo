@@ -27,11 +27,87 @@
       "physical_cores": 2,
       "logical_cores": 4,
       "performance_cores": 2,
-      "memory_bytes": 16766410752,
+      "memory_bytes": 16766414848,
       "accelerator": false
     }
   },
   "runs": [
+    {
+      "commit": "dd0fca0a86613ed7c3867d8d753ab326b420094b",
+      "short_commit": "dd0fca0",
+      "timestamp": "2026-09-04T17:29:25Z",
+      "ref": "main",
+      "host": "linux-x86_64-amd-epyc-9v74-80-core-processor-2c",
+      "config": {
+        "min_runtime_secs": 1.0,
+        "num_warmup_iters": 2,
+        "num_repetitions": 5,
+        "max_iters": 100000000,
+        "max_samples": 20000,
+        "resolution_factor": 100,
+        "timer_resolution_ns": 31.474609375,
+        "force_batched": false
+      },
+      "results": {
+        "bench_compress_q1": {
+          "mean_ns": 1991021.558714044,
+          "min_ns": 1889036.0,
+          "max_ns": 2600287.0,
+          "median_ns": 1987093.0,
+          "stddev_ns": 33958.12062854885,
+          "p50_ns": 1987093.0,
+          "p90_ns": 2027637.8,
+          "p99_ns": 2083426.2,
+          "sampling": "per-iteration",
+          "samples": 2955,
+          "samples_seen": 2955,
+          "iters": 591,
+          "reps": 5,
+          "throughput": 8.426436131026138,
+          "throughput_unit": "GB/s",
+          "throughput_metric": "bytes",
+          "throughput_count": 16777216
+        },
+        "bench_compress_q5": {
+          "mean_ns": 15159806.36923077,
+          "min_ns": 14920061.0,
+          "max_ns": 18248936.0,
+          "median_ns": 15131705.0,
+          "stddev_ns": 216799.0777619901,
+          "p50_ns": 15131705.0,
+          "p90_ns": 15279395.1,
+          "p99_ns": 15546051.34,
+          "sampling": "per-iteration",
+          "samples": 390,
+          "samples_seen": 390,
+          "iters": 78,
+          "reps": 5,
+          "throughput": 1.1066906523326063,
+          "throughput_unit": "GB/s",
+          "throughput_metric": "bytes",
+          "throughput_count": 16777216
+        },
+        "bench_decompress": {
+          "mean_ns": 14318973.807228915,
+          "min_ns": 14149407.0,
+          "max_ns": 14799046.0,
+          "median_ns": 14286013.0,
+          "stddev_ns": 110783.54347466654,
+          "p50_ns": 14286013.0,
+          "p90_ns": 14474684.6,
+          "p99_ns": 14723789.18,
+          "sampling": "per-iteration",
+          "samples": 415,
+          "samples_seen": 415,
+          "iters": 83,
+          "reps": 5,
+          "throughput": 1.1716772602468233,
+          "throughput_unit": "GB/s",
+          "throughput_metric": "bytes",
+          "throughput_count": 16777216
+        }
+      }
+    },
     {
       "commit": "9e1edb5eee57f7d006652d22defaf7652a2b2327",
       "short_commit": "9e1edb5",
