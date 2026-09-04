@@ -1,7 +1,7 @@
 [workspace]
 authors = ["Marius S <39998+winding-lines@users.noreply.github.com>"]
 name = "brotli.mojo"
-version = "0.1.0"
+version = "0.1.1"
 description = "A Mojo Brotli binding (RFC 7932 compress/decompress) via FFI to libbrotlienc/libbrotlidec. Brotli is the last Parquet page codec magmalake could not read."
 preview = ["pixi-build"]
 channels = [
@@ -59,7 +59,7 @@ bench = ["stable", "bench"]
 # import stays `from brotli import …`.
 [package]
 name = "brotli-mojo"
-version = "0.1.0"
+version = "0.1.1"
 
 [package.build]
 backend = { name = "pixi-build-mojo", version = "0.*" }

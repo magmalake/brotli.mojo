@@ -117,7 +117,7 @@ def _error_string(imm lib: OwnedDLHandle, code: Int) raises -> String:
     var addr = name_fn(c_int(code))
     if addr == 0:
         return String("<unknown brotli error>")
-    var p = UnsafePointer[UInt8, ImmUntrackedOrigin](unsafe_from_address=addr)
+    var p = Pointer[UInt8, ImmUntrackedOrigin](unsafe_from_address=addr)
     return String(unsafe_from_utf8_ptr=p)
 
 
