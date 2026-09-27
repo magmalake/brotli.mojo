@@ -120,7 +120,7 @@ pixi run test     # nightly (default env)
 pixi run -e stable test
 ```
 
-17 tests: round trips at 0 B, 1 B, 1 KiB, 1 MiB (compressible) and 1 MiB
+The tests cover round trips at 0 B, 1 B, 1 KiB, 1 MiB (compressible) and 1 MiB
 (random); across qualities 0/1/5/9/11, window sizes 10/16/24, and all three
 encoder modes; the sized, into-buffer and unsized decompress paths; and the
 corrupt / truncated / buffer-too-small / wrong-size error paths.
