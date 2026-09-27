@@ -40,12 +40,11 @@ def bench_compress_q1(mut b: Benchmark) raises:
     var src = _pattern(SIZE)
     b.throughput(Metric.bytes(), SIZE)
 
-    @parameter
-    def call() raises:
+    def call() raises {imm src}:
         var stream = compress(src, quality=1)
         keep(stream)
 
-    b.iter[call]()
+    b.iter(call)
     keep(src)
 
 
@@ -53,12 +52,11 @@ def bench_compress_q5(mut b: Benchmark) raises:
     var src = _pattern(SIZE)
     b.throughput(Metric.bytes(), SIZE)
 
-    @parameter
-    def call() raises:
+    def call() raises {imm src}:
         var stream = compress(src, quality=5)
         keep(stream)
 
-    b.iter[call]()
+    b.iter(call)
     keep(src)
 
 
@@ -68,12 +66,11 @@ def bench_decompress(mut b: Benchmark) raises:
     # Rate is against the uncompressed size: payload bytes recovered/second.
     b.throughput(Metric.bytes(), SIZE)
 
-    @parameter
-    def call() raises:
+    def call() raises {imm stream}:
         var back = decompress(stream, SIZE)
         keep(back)
 
-    b.iter[call]()
+    b.iter(call)
     keep(src)
     keep(stream)
 
