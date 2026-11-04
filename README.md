@@ -68,9 +68,14 @@ pixi install                                              # builds libbrotlimojo
 mojo build your.mojo -I ../brotli.mojo/src -o your-bin    # no link flags needed
 ```
 
-`_open_lib()` resolves the shim at `$CONDA_PREFIX/lib/libbrotlimojo.dylib` (or
-`.so`; CMake picks the platform's natural extension), falling back to
-`build/libbrotlimojo.{dylib,so}` for a bare checkout outside pixi.
+The shim is found at run time, with or without `CONDA_PREFIX`
+(`src/brotli/_dlopen.mojo`): `$CONDA_PREFIX/lib/libbrotlimojo.dylib` (or `.so`;
+CMake picks the platform's natural extension) first, then next to the
+executable and in its `../lib`, then on the binary's rpath, which `mojo
+build` points at the environment it built in. So a binary built with `pixi
+run mojo build` also runs from a plain shell. When none has it, the first
+brotli call raises an Error naming the places it looked and saying to set
+`CONDA_PREFIX`.
 
 ## API
 
