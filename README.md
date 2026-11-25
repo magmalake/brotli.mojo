@@ -1,6 +1,6 @@
 # brotli.mojo
 
-[![mojoshelf](https://mojoshelf.org/badge/brotli-mojo.svg)](https://mojoshelf.org/tins/brotli-mojo) [![mojo nightly](https://mojoshelf.org/badge/brotli-mojo/nightly.svg)](https://mojoshelf.org/tins/brotli-mojo)
+[![mojoshelf](https://mojoshelf.org/badge/brotli-mojo.svg)](https://mojoshelf.org/tins/brotli-mojo) [![mojo nightly](https://mojoshelf.org/badge/brotli-mojo/nightly.svg)](https://mojoshelf.org/tins/brotli-mojo) [![Used by](https://mojourney.dev/badge/magmalake/brotli.mojo/used-by.svg)](https://mojourney.dev/repos/magmalake/brotli.mojo#used-by) [![Mojo version](https://mojourney.dev/badge/magmalake/brotli.mojo/mojo.svg)](https://mojourney.dev/repos/magmalake/brotli.mojo)
 
 A Mojo binding to **libbrotli** ([RFC 7932](https://www.rfc-editor.org/rfc/rfc7932))
 — compress and decompress. A small C shim (`shim/brotli_wrapper.c`) is compiled
