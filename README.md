@@ -121,7 +121,7 @@ oversized input; decoder failures carry libbrotli's own error string.
 ## Test
 
 ```sh
-pixi run test     # Mojo 1.3.0.dev2026111805
+pixi run test     # Mojo 1.3.0.dev2026112505
 ```
 
 The tests cover round trips at 0 B, 1 B, 1 KiB, 1 MiB (compressible) and 1 MiB
