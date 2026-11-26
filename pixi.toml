@@ -1,7 +1,7 @@
 [workspace]
 authors = ["Marius S <39998+winding-lines@users.noreply.github.com>"]
 name = "brotli.mojo"
-version = "0.2.1"
+version = "0.2.2"
 description = "A Mojo Brotli binding (RFC 7932 compress/decompress) via FFI to libbrotlienc/libbrotlidec. Brotli is the last Parquet page codec magmalake could not read."
 preview = ["pixi-build"]
 channels = [
@@ -25,7 +25,7 @@ brotli-shim = { path = "shim" }
 # Added by `pixi shelf add lint-mojo`: the linter comes from GitHub as a pixi
 # source dependency pinned at the revision mojoshelf published, and builds
 # the `mojolint` executable into every environment next to mojo-lsp-server.
-lint-mojo = { git = "https://github.com/magmalake/lint.mojo.git", rev = "076a7a349917151ff8016079a036654865b3ccc1" }
+lint-mojo = { git = "https://github.com/magmalake/lint.mojo.git", rev = "d52d43d575bb3d82e3cce43ce93bf4e4d6d89923" }
 
 [tasks]
 # Round-trip gate: compress -> decompress -> original at several sizes and
@@ -58,7 +58,7 @@ bench = ["bench"]
 # import stays `from brotli import …`.
 [package]
 name = "brotli-mojo"
-version = "0.2.1"
+version = "0.2.2"
 
 [package.build]
 backend = { name = "pixi-build-mojo", version = "0.*" }
